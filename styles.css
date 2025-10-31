@@ -140,7 +140,7 @@ body {
 
 .hero-text p {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: #6b5d52;
     line-height: 1.7;
     margin-bottom: 2rem;
@@ -236,11 +236,13 @@ body {
 }
 
 .what-i-do-content li::before {
-    content: '→';
+    content: '•';
     position: absolute;
     left: 0;
     color: #3d2f24;
     font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 .what-i-do-content strong {
@@ -549,13 +551,13 @@ body {
     max-width: 1400px;
     margin: 4rem auto;
     padding: 0 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 4rem;
-    align-items: start;
+    align-items: center;
 }
 
 .contact-left {
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -583,25 +585,23 @@ body {
 }
 
 .contact-right {
+    flex: 0 0 450px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    max-height: 700px;  /* Constrains image height */
+    margin-top: 12.5rem;
+    margin-left: 10rem;
 }
 
 .contact-right img {
     width: 100%;
     max-width: 450px;
-    max-height: 600px;
     height: auto;
     border-radius: 12px;
     border: 3px solid #3d2f24;
     box-shadow: 0 12px 40px rgba(61, 47, 36, 0.25);
     display: block;
-    object-fit: cover;
 }
-
 /* ===================================
    CTA BUTTONS
    =================================== */
