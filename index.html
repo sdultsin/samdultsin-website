@@ -5,22 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sam Dultsin | AI SaaS Consulting</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Load Calendly early -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="pages/about.html">About</a>
-        <a href="pages/services.html">Services</a>
-        <a href="pages/resources.html">Resources</a>
-        <a href="pages/contact.html">Book a Call</a>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <a href="index.html" class="logo">Sam Dultsin</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="services.html">Services</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
-    <header>
-        <h1>Build AI systems that work.</h1>
-        <p>I help AI SaaS companies fix model reliability, automate pipelines, and scale growth ops.</p>
-        <a href="pages/contact.html" class="cta">Book a Call</a>
-    </header>
+    <!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>
+                <span class="hero-main">I help AI startups scale faster</span>
+                <span class="hero-sub">by fixing the systems that stall <em>real growth</em>.</span>
+            </h1>
+            <p>Whether it's optimizing how your model performs or how your outreach converts, I focus on the leverage points that turn complexity into scale.</p>
+            <a href="contact.html" class="cta">Book a Call</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/sam-dultsin_website_profile.webp" alt="Sam Dultsin">
+        </div>
+    </div>
+</section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- What I Do Section -->
+    <section class="what-i-do">
+        <h2>What I Do</h2>
+        <div class="what-i-do-content">
+            <p>I help early-stage AI startups close the gap between potential and performance. That usually means two things:</p>
+            
+            <ul>
+                <li><strong>AI Evaluation:</strong> improving the reliability, output quality, and conversion of LLM-based products so users actually trust and adopt what you've built.</li>
+                <li><strong>Growth Automation:</strong> refining and automating outbound systems so your team spends less time chasing leads and more time building the product.</li>
+            </ul>
+            
+            <p>The work itself varies, but the goal is always the same: reduce friction, increase output, and make your systems compound over time.</p>
+        </div>
+    </section>
+
+    <!-- How I Work Section -->
+<section class="how-i-work">
+    <h2>How I Work</h2>
+    <div class="how-i-work-content">
+        <p>I move fast, learn fast, and focus on impact. When I see a bottleneck, I don't wait for a course or certification to tell me how to fix it. I learn what I need and apply it immediately.</p>
+        
+        <p>I went from zero programming experience to building and deploying this site in 1 week. Not to become a developer, but to pick up new tools and turn ideas into working systems. My advantage is not experience. It's adaptability.</p>
+    </div>
+</section>
+
+<!-- Two Column Section -->
+<section class="two-column-section">
+    <div class="column">
+        <h2>What "Real Work" Means</h2>
+        <p>Real work is the kind that drives metrics, not meetings. For startups, that means faster experiments, cleaner pipelines, and measurable growth.</p>
+        <p>Everything else, like slide decks, reports, or polished busywork, comes second to building the systems that actually move revenue, retention, or product quality forward.</p>
+    </div>
+    
+    <div class="column">
+        <h2>Why That Matters</h2>
+        <p>I’m in college right now, though it’s clear the system isn’t built for where tech is headed. AI has revolutionized how we learn and build, and it’s not waiting for academia to catch up.</p>
+        <p>Startups don't have time for theory, and neither do I. What matters is execution and building things that work, fast.</p>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section-final">
+    <div class="cta-content">
+        <div class="cta-text">
+            <h2>Ready to Scale Faster?</h2>
+            <p>If you're building something ambitious and need someone who learns fast, adapts fast, and delivers meaningful results from day one, let's talk.</p>
+        </div>
+        <div class="cta-calendly">
+            <!-- Calendly inline widget begin -->
+             <div class="calendly-inline-widget" data-url="https://calendly.com/sdultsin-syr/30min?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+            <!-- Calendly inline widget end -->
+        </div>
+    </div>
+</section>
