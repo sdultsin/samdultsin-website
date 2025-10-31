@@ -761,3 +761,111 @@ body {
         padding: 1.5rem;
     }
 }
+
+/* AI Eval Landing Page Hero with Background Code */
+.landing-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8rem; /* Add more top padding */
+    padding-bottom: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+    overflow: hidden;
+}
+
+/* Hero content sits above background */
+.landing-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin-top: -25rem; /* Push content down from nav */
+}
+
+.landing-hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #3d2f24;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.landing-hero-content p {
+    font-size: 1.25rem;
+    color: #6b5d52;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Problems section */
+.landing-problems {
+    padding: 5rem 4rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+.landing-problems h2 {
+    font-size: 2.5rem;
+    color: #3d2f24;
+    margin-bottom: 3rem;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.problem-card {
+    background: #faf8f3;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e8dfd5;
+}
+
+.problem-card h3 {
+    font-size: 1.5rem;
+    color: #3d2f24;
+    margin-bottom: 1rem;
+}
+
+.problem-card p {
+    color: #6b5d52;
+    line-height: 1.6;
+}
+
+/* Final CTA section */
+.landing-cta {
+    padding: 5rem 4rem;
+    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+    text-align: center;
+}
+
+.landing-cta p {
+    font-size: 1.5rem;
+    color: #3d2f24;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .landing-nav {
+        padding: 1rem 2rem;
+    }
+    
+    .landing-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .problems-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
