@@ -162,6 +162,7 @@ body {
     box-shadow: 0 12px 40px rgba(61, 47, 36, 0.25);  /* Stronger shadow */
 }
 
+
 /* ===================================
    ABOUT SECTION
    =================================== */
@@ -792,14 +793,49 @@ body {
     color: #3d2f24;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    white-space: nowrap;
+    
+    /* Gradient text styles */
+    background: linear-gradient(90deg, #3d2f24 0%, #817165 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
+
 
 .landing-hero-content p {
     font-size: 1.25rem;
     color: #6b5d52;
     margin-bottom: 2rem;
     line-height: 1.6;
+}
+
+.landing-hero-content .hero-subtitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #6b5d52;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+
+        /* Add gradient text styles */
+    background: linear-gradient(90deg, #3d2f24 0%, #817165 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.emoji-no-gradient {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: inherit;
+}
+
+.landing-hero-content .hero-description {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.15rem;
+    color: #6b5d52;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
 }
 
 /* Right side - code snippets container */
@@ -824,9 +860,10 @@ body {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(61, 47, 36, 0.25);
 }
+
 /* Problems section */
 .landing-problems {
-    padding: 5rem 4rem;
+    padding: 5rem 2rem;
     background: #ffffff;
     text-align: center;
 }
@@ -838,24 +875,30 @@ body {
 }
 
 .problems-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .problem-card {
     background: #faf8f3;
-    padding: 2rem;
+    border: 2px solid #e8dfd5;
     border-radius: 12px;
-    border: 1px solid #e8dfd5;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 380px;
 }
 
 .problem-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #3d2f24;
     margin-bottom: 1rem;
+    line-height: 1.3;
 }
 
 .problem-card p {
@@ -868,6 +911,12 @@ body {
     padding: 5rem 4rem;
     background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
     text-align: center;
+}
+
+.landing-cta h2 {
+    font-size: 2rem;
+    color: #3d2f24;
+    margin-bottom: 2rem; /* Add or increase this */
 }
 
 .landing-cta p {
@@ -918,4 +967,131 @@ body {
     60% {
         transform: translateX(-50%) translateY(-5px);
     }
+}
+
+/* ===================================
+   COLD EMAIL LANDING PAGE STYLES
+   =================================== */
+
+/* Summary Section (NEW) */
+.landing-summary {
+    padding: 5rem 4rem;
+    background: white;
+    text-align: center;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.landing-summary h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3d2f24;
+    margin-bottom: 1.5rem;
+}
+
+.landing-summary p {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: #6b5d52;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+/* Cold Email Hero Image (separate from AI Eval) */
+.cold-email-hero-image {
+    width: 100%;
+    max-width: 700px;  /* Bigger than AI eval's 550px */
+    opacity: 0.8;
+    box-shadow: 0 10px 30px rgba(61, 47, 36, 0.15);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.cold-email-hero-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(61, 47, 36, 0.25);
+    opacity: 1;
+}
+
+/* Responsive adjustments for summary */
+@media (max-width: 768px) {
+    .landing-summary {
+        padding: 3rem 2rem;
+    }
+
+    .landing-summary h2 {
+        font-size: 1.5rem;
+    }
+
+    .landing-summary p {
+        font-size: 1rem;
+    }
+}
+
+/* Floating Logos */
+.landing-cta {
+    position: relative; /* Important for absolute positioning */
+    padding: 5rem 4rem;
+    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+    text-align: center;
+}
+
+.floating-logo {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+.floating-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-5px);
+}
+
+/* HubSpot - Top Left */
+.logo-hubspot {
+    left: 15%;
+    top: 20%;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Instantly - Bottom Left */
+.logo-instantly {
+    left: 20%;
+    top: 60%;
+    animation: float 5s ease-in-out infinite 0.5s;
+}
+
+/* Apollo - Top Right */
+.logo-apollo {
+    right: 15%;
+    top: 20%;
+    animation: float 4.5s ease-in-out infinite 1s;
+    border-radius: 10px;
+}
+
+/* Lemlist - Bottom Right */
+.logo-lemlist {
+    right: 20%;
+    top: 60%;
+    animation: float 5.5s ease-in-out infinite 1.5s;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Keep CTA content centered and above logos */
+.landing-cta h2,
+.landing-cta .cta {
+    position: relative;
+    z-index: 2;
 }
