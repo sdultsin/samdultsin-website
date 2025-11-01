@@ -762,36 +762,36 @@ body {
     }
 }
 
-/* AI Eval Landing Page Hero with Background Code */
+
+/* AI Eval Landing Page Hero - Split Layout */
 .landing-hero {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 8rem; /* Add more top padding */
-    padding-bottom: 5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    align-items: flex-start; /* Changed from center to flex-start */
+    justify-content: space-between;
+    padding: 8rem 4rem 5rem 4rem; /* Increased top padding */
     background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
     overflow: hidden;
+    gap: 4rem;
 }
 
-/* Hero content sits above background */
+/* Left side - hero content */
 .landing-hero-content {
-    position: relative;
+    flex: 1.2;
+    max-width: 700px;
+    text-align: left;
     z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    margin-top: -25rem; /* Push content down from nav */
+    padding-top: 2rem; /* Pushes content down slightly from very top */
 }
 
 .landing-hero-content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color: #3d2f24;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
 .landing-hero-content p {
@@ -799,6 +799,22 @@ body {
     color: #6b5d52;
     margin-bottom: 2rem;
     line-height: 1.6;
+}
+
+/* Right side - code snippets container */
+.code-snippets-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Reduced gap between images */
+    z-index: 1;
+    padding-top: 2rem;
+}
+
+.code-snippet {
+    width: 100%;
+    max-width: 350px; /* Reduced from 500px */
+    opacity: 0.9;
 }
 
 /* Problems section */
