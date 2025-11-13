@@ -1526,6 +1526,24 @@ body {
     min-height: 100vh;
 }
 
+.workflow-page-intro {
+    background: #faf8f3;
+    padding: 2.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.workflow-page-intro p {
+    font-size: 1.1rem !important;
+    color: #3d2f24;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.workflow-page-intro p:last-child {
+    margin-bottom: 0;
+}
+
 .workflow-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -1906,4 +1924,36 @@ body {
     .step-image-placeholder {
         width: 100%;
     }
+}
+
+/* Workflow CTA Section */
+.workflow-cta {
+    background: #faf8f3;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.workflow-cta h2 {
+    margin-top: 0;
+}
+
+.workflow-cta p {
+    margin-bottom: 2rem;
+}
+
+.workflow-cta-button {
+    display: inline-block;
+    background: #3d2f24;
+    color: #ffffff;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: backgroun 0.3s ease;
+}
+
+.workflow-cta-button:hover {
+    background: #2d1f14;
 }
