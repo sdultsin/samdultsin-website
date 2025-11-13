@@ -31,21 +31,21 @@
 
             <hr class="workflow-divider">
             
-<!-- Setting the Foundation -->
-<div class="growth-split-section">
-    <div class="growth-text-half">
-        <h2>Setting the Foundation</h2>
-        <p>Before writing a single email, I built the website you're on right now.</p>
-        <p>Aside from branding, it fits more than a resume ever could and does so in an interactive way. It shows how I think, build, and solve problems.</p>
-        <p>I learned vibe coding with Claude and YouTube tutorials, practiced with a mock AI SaaS site, and then built this one in a week using VS Code, Claude, GitHub, and Vercel.</p>
-        <p>Once the site was live, the next step was directing the right kind of traffic to it.</p>
-    </div>
-    <div class="growth-image-half">
-        <img src="images/personal_website.png" alt="Personal website screenshot">
-    </div>
-</div>
+            <!-- Setting the Foundation -->
+            <div class="growth-split-section">
+                <div class="growth-text-half">
+                    <h2>Setting the Foundation</h2>
+                    <p>Before writing a single email, I built the website you're on right now.</p>
+                    <p>Aside from branding, it fits more than a resume ever could and does so in an interactive way. It shows how I think, build, and solve problems.</p>
+                    <p>I learned vibe coding with Claude and YouTube tutorials, practiced with a mock AI SaaS site, and then built this one in a week using VS Code, Claude, GitHub, and Vercel.</p>
+                    <p>Once the site was live, the next step was directing the right kind of traffic to it.</p>
+                </div>
+                <div class="growth-image-half">
+                    <img src="images/personal_website.png" alt="Personal website screenshot">
+                </div>
+            </div>
 
-<hr class="workflow-divider">
+            <hr class="workflow-divider">
 
             <!-- Defining Who to Reach -->
             <h2>Defining Who to Reach</h2>
@@ -60,12 +60,85 @@
                 <li>Industry relevance</li>
             </ul>
             <p>I prioritized funding recency because newer rounds usually mean they're in the middle of a growth sprint, which is the perfect time for outbound optimization.</p>
-            <p>After running about 1,000 accounts through the system, I had a ranked list of targets with the most promising companies at the top.</p>
+            <p>After running about 1,000 accounts through the system, I had a ranked list with the most promising companies at the top.</p>
             
             <!-- Scoring Sheet Image -->
-             <div class="workflow-image-full">
-                 <img src="images/scoring_sheet.png" alt="Company scoring spreadsheet">
-            </div>            
+            <div class="workflow-image-full">
+                <img src="images/scoring_sheet.png" alt="Company scoring spreadsheet">
+            </div>
+
+            <hr class="workflow-divider">
+
+            <!-- Lead Research & Enrichment -->
+            <div class="enrichment-section">
+                <h2>Lead Research & Enrichment</h2>
+                <p>Finding leads was straightforward. After defining the ICP for both the growth and AI eval segments, I qualified accounts based on parameters like employee size, total funding, funding recency, latest funding amount, location, and industry. Then I filtered by role (e.g., for growth outreach, I targeted CTOs and Heads of Product or Engineering).</p>
+                <p>But I didn't want the emails to sound automated. Each message had to feel like it was written by someone who actually did their homework. Doing that manually for thousands of leads isn't sustainable, so this is where automation came in.</p>
+                <p>To scale the human touch, I built an <strong>automated lead enrichment system</strong> powered by Google Sheets, Perplexity's API, and custom Apps Scripts. It personalizes each email in three steps.</p>
+            </div>
+           
+            <!-- Perplexity Process Images -->
+<div class="perplexity-images">
+    <div class="perplexity-image-item perplexity-left">
+        <img src="images/perplexity_images/PERPLEXITY.png" alt="Perplexity research process">
+    </div>
+    <div class="perplexity-image-item perplexity-middle">
+        <img src="images/perplexity_images/PERPLEXITY_PAIN.png" alt="Perplexity pain point identification">
+    </div>
+    <div class="perplexity-image-item perplexity-right">
+        <img src="images/perplexity_images/PERPLEXITY_SUBJECT.png" alt="Perplexity subject line generation">
+    </div>
+</div>
+
+<!-- Step 1: Research -->
+<h3>Step 1: Research</h3>
+<div class="step-container">
+    <div class="step-card">
+        <p>For each lead in the sheet, the system runs a Perplexity prompt that pulls company context from both structured data (employee count, funding info, company website, LinkedIn) and online search. It finds one notable product, feature, or update to reference in the email.</p>
+        
+        <p class="example-label">Example output:</p>
+        <p class="example-output"><em>&quot;Noticed your $8.6M Series A funding to expand Streamline AI's legal operations platform. Curious about your approach to scaling outbound and email infrastructure as you grow your GTM motion?&quot;</em></p>
+        
+        <p>At first, I tried using a single prompt to handle everything, but the results were too generic. Breaking it into three API calls gave the process cleaner logic and better context.</p>
+    </div>
+    
+    <div class="step-image-placeholder">
+        <span>Image Placeholder</span>
+    </div>
+</div>
+
+<!-- Step 2: Pain Points -->
+<h3>Step 2: Pain Points</h3>
+<div class="step-container">
+    <div class="step-card">
+        <p>The second API call builds on the first output. It identifies one or two likely pain points based on their product, growth stage, or recent activity, then crafts a short follow-up sentence that connects those insights.</p>
+        
+        <p class="example-label">Example output:</p>
+        <p class="example-output"><em>&quot;I'd imagine keeping cold emails from looking too automated feels tricky when your platform handles so many requests. Staying human in outreach probably helps get better replies.&quot;</em></p>
+    </div>
+    
+    <div class="step-image-placeholder">
+        <span>Image Placeholder</span>
+    </div>
+</div>
+
+<!-- Step 3: Subject Line -->
+<h3>Step 3: Subject Line</h3>
+<div class="step-container">
+    <div class="step-card">
+        <p>The final API call generates a subject line that feels natural and contextual, not like typical sales clickbait. It uses the previous two outputs for context.</p>
+        
+        <p class="example-label">Example:</p>
+        <p class="example-output"><em>&quot;Series A + outbound scaling&quot;</em></p>
+        
+        <p>In total, each email ends up with three to four personalized sentences that read like I actually researched them — because I did, just automated.</p>
+    </div>
+    
+    <div class="step-image-placeholder">
+        <span>Image Placeholder</span>
+    </div>
+</div>
+            
         </div>
     </section>
 </body>
