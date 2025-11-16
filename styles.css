@@ -1926,6 +1926,46 @@ body {
     }
 }
 
+/* Evaluation Section */
+.evaluation-split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin: 3rem 0;
+  align-items: center;
+}
+
+.evaluation-text-half {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.evaluation-image-half {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evaluation-image-half img {
+  max-width: 85%; /* Scale down to 85% of container */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .evaluation-split-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .evaluation-image-half img {
+    max-width: 100%; /* Full width on mobile */
+  }
+}
+
 /* Workflow CTA Section */
 .workflow-cta {
     background: #faf8f3;
