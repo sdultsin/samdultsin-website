@@ -85,8 +85,8 @@ body {
 
 .hero {
     background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
-    padding: 5rem 4rem;
-    min-height: calc(100vh - 100px);
+    padding: 5rem 4rem 3rem 4rem;  /* Less bottom padding */
+    min-height: 100vh;  /* Changed - full viewport height */
     display: flex;
     align-items: center;
 }
@@ -811,13 +811,13 @@ body {
 .contact-right {
     flex: 0 0 450px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     margin-top: 12.5rem;
     margin-left: 10rem;
 }
 
-.contact-right img {
+.contact-right > img {  /* Only direct child img (the profile photo) */
     width: 100%;
     max-width: 450px;
     height: auto;
@@ -825,6 +825,16 @@ body {
     border: 3px solid #3d2f24;
     box-shadow: 0 12px 40px rgba(61, 47, 36, 0.25);
     display: block;
+}
+
+/* Remove styles from social link images */
+.contact-right .social-links img {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    width: 40px;  /* Keep size from .social-links img */
+    height: 40px;
+    max-width: none;
 }
 /* ===================================
    CTA BUTTONS
@@ -1304,7 +1314,7 @@ body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 6.5rem;
+    bottom: 5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -1968,7 +1978,7 @@ body {
 
 /* Workflow CTA Section */
 .workflow-cta {
-    background: #faf8f3;
+    background: #f8f4ed;
     padding: 3rem;
     border-radius: 8px;
     text-align: center;
