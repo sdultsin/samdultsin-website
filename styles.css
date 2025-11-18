@@ -216,25 +216,26 @@ body {
     margin: 0 auto;
 }
 
+.service-box-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .service-box {
     background: #f6f2ea;
     border: 2px solid #e8dfd5;
     border-radius: 12px;
     padding: 2.5rem;
     transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
 }
 
-.service-box:hover {
+.service-box-link:hover .service-box {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(61, 47, 36, 0.12);
     border-color: #3d2f24;
-}
-
-.service-box h3 {
-    font-size: 1.75rem;
-    color: #3d2f24;
-    margin-bottom: 1rem;
-    text-align: center;
 }
 
 .service-intro {
@@ -1136,49 +1137,90 @@ body {
     box-shadow: 0 20px 40px rgba(61, 47, 36, 0.25);
 }
 
-/* Problems section */
-.landing-problems {
-    padding: 5rem 2rem;
-    background: #ffffff;
+/* Problems & Solutions Comparison Section */
+.landing-comparison {
+    padding: 6rem 2rem;
+    background: white;
+}
+
+.comparison-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.comparison-column {
+    flex: 1;
+}
+
+.comparison-column h2 {
+    font-size: 2rem;
+    color: #3d2f24;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
-.landing-problems h2 {
-    font-size: 2.5rem;
-    color: #3d2f24;
-    margin-bottom: 3rem;
-}
-
-.problems-grid {
+.comparison-items {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
-    max-width: 1500px;
-    margin: 0 auto;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
-.problem-card {
-    background: #faf8f3;
-    border: 2px solid #e8dfd5;
-    border-radius: 12px;
+.comparison-item {
+    background: #f6f2ea;
     padding: 2rem;
-    transition: all 0.3s ease;
-    flex: 1;
-    max-width: 380px;
+    border-radius: 12px;
+    border: 2px solid #e8dfd5;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.problem-card h3 {
+.comparison-item h3 {
     font-size: 1.25rem;
-    font-weight: 700;
     color: #3d2f24;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
 }
 
-.problem-card p {
+.comparison-item p {
     color: #6b5d52;
     line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Vertical Divider */
+.comparison-divider {
+    width: 2px;
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        #e8dfd5 10%,
+        #e8dfd5 90%,
+        transparent 100%
+    );
+    align-self: stretch;  /* Makes it fill the full height of the container */
+    min-height: 600px;    /* Increased from 400px */
+    margin-top: 4rem;
+}
+
+/* Responsive: Stack on Mobile */
+@media (max-width: 768px) {
+    .comparison-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .comparison-divider {
+        display: none;
+    }
+    
+    .comparison-column h2 {
+        font-size: 1.5rem;
+    }
+    
+    .comparison-item {
+        padding: 1.5rem;
+    }
 }
 
 /* Final CTA section with floating logos */
@@ -1270,6 +1312,10 @@ body {
     height: 75px;
 }
 
+.landing-cta .brand-logo[src*="braintrust"] {
+    padding: 0.65rem !important;  /* Less padding = logo looks bigger */
+}
+
 .landing-cta .brand-logo:hover {
     transform: translateY(-8px);
 }
@@ -1325,6 +1371,11 @@ body {
     font-size: 2rem;
     color: #6b5d52;
     opacity: 0.6;
+}
+
+/* Scroll indicator specifically for landing pages */
+.landing-hero .scroll-indicator {
+    bottom: 8rem;  /* Adjusted position for landing pages only */
 }
 
 @keyframes bounce {
@@ -1460,11 +1511,14 @@ body {
     }
 }
 
+
+
 /* Keep CTA content centered and above logos */
 .landing-cta h2,
 .landing-cta .cta {
     position: relative;
     z-index: 2;
+    margin-top: 2rem;
 }
 
 /* Resource Detail Pages */
