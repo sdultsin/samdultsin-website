@@ -2070,28 +2070,28 @@ body {
    AI EVALUATION WORKFLOW PAGE
    ============================================ */
 
-/* Step container for side-by-side layout */
-.step-container {
+/* Scope styles to AI eval page only */
+.ai-eval-page .step-container {
     display: flex;
     gap: 3rem;
     align-items: flex-start;
     margin: 2rem 0;
 }
 
-.step-card {
+.ai-eval-page .step-card {
     flex: 1;
 }
 
-.step-card p {
+.ai-eval-page .step-card p {
     margin-bottom: 1.5rem;
 }
 
-.step-image {
+.ai-eval-page .step-image {
     flex: 0 0 45%;
     max-width: 45%;
 }
 
-.step-image img {
+.ai-eval-page .step-image img {
     width: 100%;
     max-width: 350px;
     height: auto;
@@ -2101,19 +2101,19 @@ body {
     margin: 0 auto;
 }
 
+/* Make second visual larger */
+.ai-eval-page .step-image img.larger-image {
+    max-width: 550px;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
-    .step-container {
+    .ai-eval-page .step-container {
         flex-direction: column;
     }
     
-    .step-image {
+    .ai-eval-page .step-image {
         flex: 1;
         max-width: 100%;
     }
-}
-
-/* Make second visual larger */
-.step-image img.larger-image {
-    max-width: 550px; /* Adjust this - try 500px to 600px */
 }
