@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Evaluation Workflow - Sam Dultsin</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <a href="index.html" class="logo">Sam Dultsin</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="resources.html" class="active">Resources</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <section class="workflow-page">
+      <div class="workflow-content">
+        <h1>How Systematic AI Evaluation Actually Works</h1>
+
+        <div class="step-container">
+          <div class="step-card">
+            <p>
+              Most AI teams test their models manually and reactively. It works
+              for prototypes, but once real users depend on the system, that
+              approach breaks over time. You start seeing silent regressions,
+              inconsistent behavior, and bugs that only surface after
+              deployment.
+            </p>
+            <p>
+              A systematic evaluation framework fixes that. It gives you a
+              predictable way to catch issues before they hit production and a
+              structure that scales as the model changes.
+            </p>
+            <p>
+              <strong
+                >This is the process I use when I build evaluation systems for
+                early-stage AI teams.</strong
+              >
+            </p>
+          </div>
+
+          <div class="step-image">
+            <img
+              src="images/ai_eval_workflow_visual.webp"
+              alt="AI evaluation workflow overview"
+            />
+          </div>
+        </div>
+
+        <hr class="workflow-divider" />
+
+        <!-- Section 1: Turn Failure Modes Into Test Categories -->
+        <h2>1. Turn Failure Modes Into Test Categories</h2>
+
+        <div class="step-container">
+          <div class="step-card">
+            <p>
+              The first step is defining the failure modes. Hallucinations,
+              sourcing errors, reasoning errors, formatting issues, ignoring
+              constraints, losing context, and so on. Teams often skip this
+              step, but without a shared language for failures, you can't define
+              the bugs you're trying to fix.
+            </p>
+            <p>
+              Once the failure modes are defined, you translate them into a
+              small number of test types: a combination of good examples, tricky
+              edge cases, and regression tests that catch previously observed
+              issues.
+            </p>
+            <p>
+              You don't need hundreds of prompts, just a compact set of
+              well-designed cases that represent the actual risks in your
+              product.
+            </p>
+          </div>
+
+          <div class="step-image">
+            <img
+              src="images/error_type_visual.webp"
+              alt="Error type taxonomy visual"
+              class="larger-image"
+            />
+          </div>
+        </div>
+
+        <hr class="workflow-divider" />
+
+        <!-- Section 2: Define Success -->
+        <h2>2. Define Success</h2>
+        <p>
+          Most teams under-specify this. Each test needs a clear definition of
+          what "good" means. Sometimes that's structured validation (checking
+          fields or formats). For open-ended tasks, it's a mix of LLM-as-judge
+          scoring, semantic comparison, and rule-based checks.
+        </p>
+        <p>
+          The goal is to remove ambiguity: Binary scoring (T/F or Y/N) provides
+          a simple answer. Instead of debating if something's a 7 or an 8, you
+          get a clean, unarguable signal that's actually actionable.
+        </p>
+
+        <hr class="workflow-divider" />
+
+        <!-- Section 3: Automate the Evaluations -->
+        <h2>3. Automate the Evaluations</h2>
+        <p>
+          From here, everything becomes mechanical. You set up a runner, batch
+          the tests, run them against the model, and store the outputs and
+          scores. <em>(Braintrust fits well into this stage: versioned datasets,
+          automated scoring, and diff views make iteration easier. But the test
+          logic itself is independent of the tool.)</em>
+        </p>
+        <p>
+          A systematic eval only matters if every update goes through it first.
+          Before shipping a new prompt, routing change, or model version, you
+          run the tests. If something breaks, you fix it before users ever see
+          it.
+        </p>
+        <p>
+          This shifts your releases from uncertainty to knowing exactly how the
+          next update behaves.
+        </p>
+
+        <hr class="workflow-divider" />
+
+        <!-- Section 4: Evolve the Framework -->
+        <h2>4. Evolve the Framework as the Product Changes</h2>
+        <p>
+          Once the system is in place, it grows with the product.
+          <br>User-reported issues become new tests. <br>New features require new categories.<br>As the
+          model improves, you increase thresholds.
+        </p>
+        <p>
+          This keeps quality in line with what the product is actually doing,
+          not just what you think it's doing.
+        </p>
+
+        <hr class="workflow-divider" />
+
+<!-- Opportunities to Automate -->
+<h2>Opportunities to Automate</h2>
+<p>
+  Once your evaluation workflow is set up, many parts can run
+  automatically so you catch issues faster and spend less time on manual
+  checks. You can:
+</p>
+<ul class="workflow-list">
+  <li>Run tests through the model's API</li>
+  <li>Automatically score outputs for correctness or formatting</li>
+  <li>Track regressions and flag broken behavior</li>
+  <li>
+    Build a simple interface to house these tests, view results, and
+    connect the workflow for a more streamlined process
+  </li>
+</ul>
+<p>If you want a framework like this in your product, let's talk.</p>
+
+<hr class="workflow-divider" />
+
+<!-- Closing CTA -->
+<div style="text-align: center; margin: 3rem 0 2rem 0;">
+  <a href="contact.html" class="workflow-cta-button">Book a Call</a>
+</div>
+
+</div>
+</section>
+</body>
+</html>

@@ -1735,10 +1735,12 @@ body {
 
 .workflow-image-full img {
     width: 100%;
+    max-width: 1200px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(61, 47, 36, 0.1);
     display: block;
+    margin: 0 auto;
 }
 
 /* Scoring section with side-by-side layout */
@@ -1969,6 +1971,8 @@ body {
     text-align: left;
 }
 
+
+
 /* Step headings */
 .workflow-content h3 {
     font-size: 1.5rem;
@@ -2060,4 +2064,56 @@ body {
 
 .workflow-cta-button:hover {
     background: #2d1f14;
+}
+
+/* ============================================
+   AI EVALUATION WORKFLOW PAGE
+   ============================================ */
+
+/* Step container for side-by-side layout */
+.step-container {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    margin: 2rem 0;
+}
+
+.step-card {
+    flex: 1;
+}
+
+.step-card p {
+    margin-bottom: 1.5rem;
+}
+
+.step-image {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.step-image img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(61, 47, 36, 0.1);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .step-container {
+        flex-direction: column;
+    }
+    
+    .step-image {
+        flex: 1;
+        max-width: 100%;
+    }
+}
+
+/* Make second visual larger */
+.step-image img.larger-image {
+    max-width: 550px; /* Adjust this - try 500px to 600px */
 }
