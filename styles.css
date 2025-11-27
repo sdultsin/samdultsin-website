@@ -8,14 +8,20 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: linear-gradient(180deg, #faf8f3 0%, #ffffff 100%);
     color: #3d2f24;
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden; /* Make sure this is here */
+    max-width: 100vw; /* Make sure this is here */
 }
-
 /* ===================================
    NAVIGATION
    =================================== */
@@ -277,6 +283,72 @@ body {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+    /* Navigation fixes */
+    .main-nav {
+        padding: 1rem 1.5rem;
+    }
+    
+    .landing-nav {
+        padding: 1rem 1.5rem;
+    }
+       
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    /* HERO SECTION FIXES */
+    .hero {
+        padding: 3rem 1.5rem 2rem 1.5rem;
+        min-height: auto;
+        overflow-x: hidden; /* ADD */
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 100%; /* ADD - override 1600px */
+        width: 100%; /* ADD */
+    }
+    
+    .hero-text {
+        padding-left: 0;
+        padding-right: 0; /* ADD */
+        width: 100%; /* ADD */
+    }
+    
+    .hero-main {
+        font-size: 2rem;
+        white-space: normal;
+    }
+    
+    .hero-sub {
+        font-size: 1.25rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        max-width: 100%;
+        width: 100%; /* ADD */
+    }
+    
+    .hero-image {
+        width: 100%; /* ADD */
+    }
+    
+    .hero-image img {
+        max-width: 100%;
+        width: 100%; /* ADD */
+    }
+    
+    /* Service boxes */
     .service-boxes {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -984,18 +1056,83 @@ body {
 
 @media (max-width: 768px) {
     .contact-page-grid {
-        padding: 0 2rem;
-        margin: 3rem auto;
+        padding: 0 1.5rem;
+        margin: 2rem auto;
+        flex-direction: column;
+        gap: 2rem;
     }
     
     .contact-left h1 {
         font-size: 2rem;
     }
     
+    .contact-left p {
+        font-size: 1rem;
+    }
+    
     .contact-content-box {
-        padding: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .contact-right {
+        margin-top: 0;
+        margin-left: 0;
+        flex: 1;
+    }
+    
+    .contact-right > img {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .calendly-inline-widget {
+        min-height: 500px !important;
+        height: 550px !important;
+    }
+    
+    .social-links {
+        justify-content: center;
+        margin-top: 1.5rem;
     }
 }
+    
+    /* Final CTA Section (index.html) - ADD THESE */
+    .final-cta {
+        padding: 3rem 1.5rem;
+    }
+    
+    .cta-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .cta-text {
+        padding-top: 0;
+        text-align: center;
+    }
+    
+    .cta-text h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-text p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-calendly {
+        padding: 1rem;
+    }
+    
+    .calendly-inline-widget {
+        min-height: 500px !important;
+        height: 550px !important;
+    }
+    
+    .social-links {
+        justify-content: center;
+        padding-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
 
 /* Social Links - positioned at bottom of left column */
 .social-links {
