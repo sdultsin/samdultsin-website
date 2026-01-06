@@ -3,8 +3,158 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cold Email Workflow - Sam Dultsin</title>
+    <title>How I Scale Cold Email - Sam Dultsin</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Logo Triangle Styling */
+.research-enrichment-section {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  margin: 0.5rem 0;  /* Reduced from 2rem to 0.5rem */
+}
+
+      .research-text-content {
+        flex: 1;
+      }
+
+.llm-logos-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* Changed from center to flex-start */
+  position: relative;
+  width: 400px;
+  padding-top: 0;  /* Added */
+}
+
+.llm-logos-triangle {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;  /* Reduced from 280px to 200px */
+}
+
+      .llm-logo {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 20px;
+        object-fit: contain;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(61, 47, 36, 0.1);
+      }
+
+.llm-logo-perplexity {
+  bottom: -80px;  /* Changed from -40px to -80px */
+  left: -60px;  /* Moved left */
+}
+
+.llm-logo-openai {
+  top: 80px;  /* Changed from 40px to 80px */
+  left: 50%;
+  transform: translateX(-110px);  /* Moved left (was -50%) */
+}
+
+.llm-logo-anthropic {
+  bottom: -80px;  /* Changed from -40px to -80px */
+  right: 60px;  /* Moved left (changed from right: 0) */
+}
+
+      /* Conversion Model Table */
+      .conversion-table {
+        width: 100%;
+        max-width: 600px;
+        margin: 2rem 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(61, 47, 36, 0.1);
+      }
+
+      .conversion-table tr {
+        border-bottom: 1px solid #e8dfd5;
+      }
+
+      .conversion-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .conversion-table td {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .conversion-table td:first-child {
+        font-weight: 600;
+        color: #3d2f24;
+        width: 60%;
+      }
+
+      .conversion-table td:last-child {
+        font-family: 'Courier New', monospace;
+        color: #6b5d52;
+        text-align: right;
+        width: 40%;
+      }
+
+      @media (max-width: 968px) {
+        .research-enrichment-section {
+          flex-direction: column;
+        }
+
+        .llm-logos-container {
+          width: 100%;
+          min-height: 250px;
+        }
+
+        .llm-logos-triangle {
+          height: 250px;
+          max-width: 400px;
+        }
+
+        .llm-logo {
+          width: 90px;
+          height: 90px;
+          padding: 10px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .conversion-table td {
+          padding: 0.75rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .llm-logos-triangle {
+          height: 200px;
+          max-width: 300px;
+        }
+
+        .llm-logo {
+          width: 70px;
+          height: 70px;
+          padding: 8px;
+        }
+
+        .conversion-table td {
+          padding: 0.75rem;
+          font-size: 0.85rem;
+        }
+
+        .conversion-table td:first-child {
+          width: 55%;
+        }
+
+        .conversion-table td:last-child {
+          width: 45%;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
@@ -20,21 +170,31 @@
 
     <section class="workflow-page">
       <div class="workflow-content">
-        <h1>The Cold Email System That Got You Here</h1>
+        <h1>How I Scale Cold Email Campaigns</h1>
 
-        <!-- Hero Section -->
+        <!-- Page Intro -->
         <div class="workflow-page-intro">
           <p>
-            When I started doing outreach, I wanted to avoid generic emails altogether. I wanted to build something that actually converted,
-            then systemize it so it could run automatically without losing the
-            human touch.
+            This page outlines the system I use to scale cold email responsibly and predictably.
           </p>
           <p>
-            <strong>This page breaks down exactly how I built it:</strong> the tools, the logic,
-            and the thought process behind the campaign that landed in your
-            inbox.
+            No hacks or tips & tricks, just a reliable system.
+          </p>
+          <p>
+            When people hear "scale," they usually think about volume, but in practice, scale only works when deliverability, targeting, and messaging are solid. Without those, you can forget about cold emails in the first place.
           </p>
         </div>
+
+        <hr class="workflow-divider" />
+
+        <!-- What Scale Means -->
+        <h2>What "Scale" Actually Means Here</h2>
+        <p>When I talk about scaling cold email, I usually mean:</p>
+        <ul class="workflow-list">
+          <li>100,000–300,000 total emails per month</li>
+          <li>Including follow-ups</li>
+          <li>Which typically equals ~100,000 unique leads reached per month</li>
+        </ul>
 
         <hr class="workflow-divider" />
 
@@ -71,260 +231,190 @@
 
         <hr class="workflow-divider" />
 
-        <!-- Defining Who to Reach -->
-        <h2>Defining Who to Reach</h2>
-        <p>The system only works if you target the right people.</p>
-        <p>
-          To define that precisely, I used Perplexity to shape an ideal customer
-          profile across both of my service areas: AI evaluation and
-          growth automation. As for accounts, I built a scoring model that ranks
-          companies by relevance.
-        </p>
-
-        <div class="scoring-section">
-          <div class="scoring-text">
-            <p>Each company got a weighted score based on:</p>
-            <ul class="workflow-list">
-              <li>Total and latest funding</li>
-              <li>Funding recency</li>
-              <li>Team size</li>
-              <li>Industry relevance</li>
-            </ul>
-
-            <p>
-              I prioritized funding recency because newer rounds usually mean
-              they're in the middle of a growth sprint, which is the perfect
-              time for outbound optimization.
-            </p>
-          </div>
-
-          <div class="scoring-image">
-            <img
-              src="images/funding_recency_score.png"
-              alt="Funding recency scoring breakdown"
-            />
-
-            <!-- Description below the image -->
-            <p class="formula-caption">
-              Companies are scored by how recently they raised funding, with the
-              most recent rounds (0-6 months) earning the highest score of 35
-              points.
-            </p>
-          </div>
-        </div>
-        <p>
-          After running about 1,000 accounts through the system, I had a ranked
-          list with the most promising companies at the top.
-        </p>
-
-        <!-- Scoring Sheet Image -->
-        <div class="workflow-image-full">
-          <img
-            src="images/scoring_sheet.png"
-            alt="Company scoring spreadsheet"
-          />
-        </div>
-
-        <hr class="workflow-divider" />
-
-        <!-- Lead Research & Enrichment -->
-        <div class="enrichment-section">
-          <h2>Lead Research & Enrichment</h2>
-          <p>
-            Finding leads was straightforward. After ranking the accounts, I
-            filtered by role (e.g., for growth outreach, CTOs and
-            Heads of Product or Engineering).
-          </p>
-          <p>
-            But I didn't want the emails to sound automated. Each message had to
-            feel like it was written by someone who actually did their homework.
-            Doing that manually for thousands of leads isn't sustainable, so
-            this is where automation came in.
-          </p>
-          <p>
-            To scale the human touch, I built an
-            <strong>automated lead enrichment system</strong> powered by
-            Perplexity's API and a few custom Apps Scripts. It personalizes each
-            email in three steps.
-          </p>
-        </div>
-
-        <!-- Perplexity Process Images -->
-        <div class="perplexity-images">
-          <div class="perplexity-image-item perplexity-left">
-            <img
-              src="images/perplexity_images/PERPLEXITY.png"
-              alt="Perplexity research process"
-            />
-          </div>
-          <div class="perplexity-image-item perplexity-middle">
-            <img
-              src="images/perplexity_images/PERPLEXITY_PAIN.png"
-              alt="Perplexity pain point identification"
-            />
-          </div>
-          <div class="perplexity-image-item perplexity-right">
-            <img
-              src="images/perplexity_images/PERPLEXITY_SUBJECT.png"
-              alt="Perplexity subject line generation"
-            />
-          </div>
-        </div>
-
-        <!-- Step 1: Research -->
-        <h3>Step 1: Research</h3>
-        <div class="step-container">
-          <div class="step-card">
-            <p>
-              For each lead in the sheet, the system runs a Perplexity prompt
-              that pulls company context from both structured data (employee
-              count, funding info, company website, LinkedIn) and online search.
-              It finds one notable product, feature, or update to reference in
-              the email.
-            </p>
-
-            <p class="example-label">Example output:</p>
-            <p class="example-output">
-              <em
-                >&quot;Saw [Company] added multi-agent AI for policy assessments. How are you testing
-agent accuracy and coordination in complex GRC tasks?&quot;</em
-              >
-            </p>
-
-            <p>
-              At first, I tried using a single prompt to handle everything, but
-              the results were too generic. Breaking it into three API calls
-              gave the process cleaner logic and better context.
-            </p>
-          </div>
-
-          <div class="step-image">
-            <img
-              src="images/research_prompt_colored.png"
-              alt="Research prompt formula"
-            />
-            <p class="image-caption">
-              *The full prompt includes additional formatting rules and output
-              constraints not shown in this snippet.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 2: Pain Points -->
-        <h3>Step 2: Pain Points</h3>
-        <div class="step-card">
-          <p>
-            The second API call builds on the first output. It identifies one or
-            two likely pain points based on their product, growth stage, or
-            recent activity, then crafts a short follow-up sentence that
-            connects those insights.
-          </p>
-
-          <p class="example-label">Example output:</p>
-          <p class="example-output">
-            <em
-              >&quot;Testing [Company's] agent coordination gets tricky with complex policy dependencies.
-You need checks for data context accuracy.&quot;</em
-            >
-          </p>
-        </div>
-
-        <!-- Step 3: Subject Line -->
-        <h3>Step 3: Subject Line</h3>
-        <div class="step-card">
-          <p>
-            The final API call generates a subject line that feels natural and
-            contextual, not like typical sales clickbait. It uses the previous
-            two outputs for context.
-          </p>
-
-          <p class="example-label">Example:</p>
-          <p class="example-output">
-            <em>&quot;[Company's] Agent Coordination + Policy QA&quot;</em>
-          </p>
-
-          <p>
-            In total, each email ends up with three to four personalized
-            sentences that read like I actually researched them (because I did,
-            just automated).
-          </p>
-        </div>
-
-        <hr class="workflow-divider" />
-
-<!-- Evaluating Perplexity API Outputs -->
-        <h2>Evaluating Perplexity API Outputs</h2>
+        <!-- 1. Infrastructure -->
+        <h2>1. Infrastructure</h2>
+        <p>Before copy, leads, or automation, the sending foundation needs to be solid.</p>
         
-        <div class="evaluation-split-section">
-          <div class="evaluation-text-half">
-            <p>
-              All three Perplexity functions went through 10+ testing rounds with pattern analysis, prompt refinement, and quality benchmarking.
-            </p>
-            <p>
-              Early versions produced generic outputs or hallucinated company details, but iteration (testing 5 companies per round, identifying error patterns, fixing root causes) brought accuracy rates from 17% to 92%.
-            </p>
-            <p>
-              The final prompts include gold standard examples, domain-specific rules, and fallback logic to handle edge cases like name collisions or missing signals.
-            </p>
-          </div>
-          
-          <div class="evaluation-image-half">
-            <img
-              src="images/perplexity_evaluation_graphic.webp"
-              alt="Perplexity system performance metrics"
-            />
-          </div>
-        </div>
-        
-        <hr class="workflow-divider" />
-
-        <!-- Testing and Iteration -->
-        <h2>Email Infrastructure</h2>
-        <p>
-          While building this whole campaign, I was warming up two domains (one for growth outreach and one for AI eval) using Instantly.ai. Each domain runs separate campaigns so I can isolate metrics later.
-
-        </p>
-        <p>
-          Once live, I started testing one variable at a time: subject lines,
-          openers, CTAs, and signatures. Every test inside
-          Instantly produces data that feeds into the next iteration.
-        </p>
-        <p>
-          This workflow keeps evolving as I learn more. Each test makes the next
-          one better.
-        </p>
-
-        <hr class="workflow-divider" />
-
-        <!-- Why This Matters -->
-        <h2>Why This Matters</h2>
-        <p>Most people think cold email is just about copywriting. It's not.</p>
-          </p>
-           <strong>Volume is heavily underestimated and personalization isn't
-          something that needs to be sacrificed when scaling outreach.</strong>
-        </p>
-        <p>This system proves that. It:</p>
+        <h3>Domains & Inboxes</h3>
         <ul class="workflow-list">
-          <li>
-            finds the right companies, scores them intelligently, and writes
-            contextually relevant messages in seconds.
-          </li>
-          <li>
-            runs on simple, low-cost tools that can fit into any startup's
-            stack.
-          </li>
+          <li>Domains purchased through registrars like Porkbun or Namecheap</li>
+          <li>Google and Microsoft inboxes bought through a mass inbox vendor</li>
         </ul>
-        <p>If you got one of these emails, it wasn't random.</p>
-        <p>It was the output of this process.</p>
 
-<hr class="workflow-divider">
+        <h3>Sending Platforms</h3>
+        <p>Warm-up and sending handled in platforms like Instantly or Email Bison.</p>
+        <p>These platforms handle:</p>
+        <ul class="workflow-list">
+          <li>Warm-up w/ a private IP pool</li>
+          <li>Follow-ups</li>
+          <li>Deliverability monitoring</li>
+        </ul>
 
-<!-- Let's Talk CTA -->
-<p style="text-align: center;">I built this because I wanted to scale outreach effectively. If you want to as well, feel free to reach out.</p>
+        <hr class="workflow-divider" />
 
-<div style="text-align: center; margin: 3rem 0 2rem 0;">
-  <a href="contact.html" class="workflow-cta-button">Let's Talk</a>
-</div>
+        <!-- 2. Lead Sourcing -->
+        <h2>2. Lead Sourcing</h2>
+        <p>Leads are found through Apollo and LinkedIn Sales Nav and scraped using a third-party scraper.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- 3. Email Verification & Inbox Matching -->
+        <h2>3. Email Verification & Inbox Matching</h2>
+        <p>Before any enrichment or copywriting happens, leads are filtered in a few ways:</p>
+        <ul class="workflow-list">
+          <li>Email verification</li>
+          <li>Catch-all verification</li>
+          <li>ESP matching (Gmail → Gmail, Outlook → Outlook)</li>
+        </ul>
+        <p>Sending from Google inboxes to Microsoft inboxes (and vice versa) does affect inbox placement.</p>
+        <p>This step quietly removes a large percentage of bad sends before they can do damage.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- 4. Research & Enrichment -->
+        <h2>4. Research & Enrichment</h2>
+        <p>This is where most cold email systems either shine or collapse.</p>
+        <p>
+          I use Clay as the orchestration layer (n8n as a more technical alternative), combined with multiple LLMs depending on the task:
+        </p>
+
+        <!-- Research & Enrichment Split Section -->
+        <div class="research-enrichment-section">
+          <div class="research-text-content">
+            <ul class="workflow-list">
+              <li>Perplexity → company research, product understanding, surface-level context</li>
+              <li>OpenAI → evaluation, synthesis, filtering signal from noise</li>
+              <li>Anthropic (Claude) → copywriting based on structured inputs</li>
+            </ul>
+          </div>
+
+          <!-- LLM Logos in Triangle Formation -->
+          <div class="llm-logos-container">
+            <div class="llm-logos-triangle">
+              <img 
+                src="images/3 LLM Logos/Perplexity.jpg" 
+                alt="Perplexity logo" 
+                class="llm-logo llm-logo-perplexity"
+              />
+              <img 
+                src="images/3 LLM Logos/OpenAI.jpg" 
+                alt="OpenAI logo" 
+                class="llm-logo llm-logo-openai"
+              />
+              <img 
+                src="images/3 LLM Logos/Anthropic.jpg" 
+                alt="Anthropic logo" 
+                class="llm-logo llm-logo-anthropic"
+              />
+            </div>
+          </div>
+        </div>
+
+        <p>Chronologically, it looks like:</p>
+        <ol class="workflow-list">
+          <li>Research (Perplexity)</li>
+          <li>Evaluation (OpenAI)</li>
+          <li>Writing (Claude)</li>
+        </ol>
+        <p>This keeps copy grounded in reality instead of templated fluff.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- 5. Copywriting -->
+        <h2>5. Copywriting</h2>
+        <p>I never start with scale. Initial setup usually looks like:</p>
+        <ul class="workflow-list">
+          <li>5–10 ICP variations</li>
+          <li>~20 messaging angles</li>
+          <li>Low send volume</li>
+          <li>Fast feedback loops</li>
+        </ul>
+        <p>The goal is to find:</p>
+        <ul class="workflow-list">
+          <li>What actually gets replies</li>
+          <li>What gets positive replies</li>
+          <li>What converts to meetings</li>
+        </ul>
+        <p>Only once an angle proves itself does scale make sense.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- 6. Follow-Ups -->
+        <h2>6. Follow-Ups</h2>
+        <p>Initial emails are written upstream. Follow-ups are handled inside the sending platform (Instantly, Email Bison, etc.).</p>
+        <p>Worth noting that leads can be added to the CRM and contacted on LinkedIn and/or cold call for multiple points of contact.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- 7. Scaling the System -->
+        <h2>7. Scaling the System (Not the Guess)</h2>
+        <p>Once an ICP + message combination works:</p>
+        <ul class="workflow-list">
+          <li>I increase volume by adding more domains and inboxes</li>
+          <li>Repeating this process</li>
+        </ul>
+
+        <hr class="workflow-divider" />
+
+        <!-- 8. Safety, Ethics, and Deliverability -->
+        <h2>8. Safety, Ethics, and Deliverability</h2>
+        <p>This deserves its own section because everything else depends on it.</p>
+        <p>Key principles:</p>
+        <ul class="workflow-list">
+          <li>Warm-up before volume</li>
+          <li>Conservative daily send limits</li>
+          <li>Continuous inbox and domain health monitoring</li>
+          <li>Immediate pullback if deliverability drops</li>
+        </ul>
+        <p>Cold email only works if you earn inbox trust. If deliverability fails, copy, tooling, and targeting become irrelevant.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- Conversion Model -->
+        <h2>A Simple Conversion Model</h2>
+        <p>To visualize these numbers, here's an estimate:</p>
+
+        <table class="conversion-table">
+          <tr>
+            <td>Total emails sent</td>
+            <td>300,000</td>
+          </tr>
+          <tr>
+            <td>Total unique leads contacted</td>
+            <td>100,000</td>
+          </tr>
+          <tr>
+            <td>1% reply rate</td>
+            <td>1,000 replies</td>
+          </tr>
+          <tr>
+            <td>25% positive replies</td>
+            <td>250 positive replies</td>
+          </tr>
+          <tr>
+            <td>40% meetings booked</td>
+            <td>100 meetings booked</td>
+          </tr>
+          <tr>
+            <td>60% meeting show rate</td>
+            <td>60 showed up</td>
+          </tr>
+          <tr>
+            <td>40% closed</td>
+            <td>24 closed</td>
+          </tr>
+        </table>
+
+        <p style="margin-top: 2rem;">These are conservative estimates. Of course as you scale, you improve your outreach, and bump these %'s up.</p>
+
+        <hr class="workflow-divider" />
+
+        <!-- CTA -->
+        <p style="text-align: center;">If this sounds interesting, let's talk.</p>
+
+        <div style="text-align: center; margin: 3rem 0 2rem 0;">
+          <a href="contact.html" class="workflow-cta-button">Let's Talk</a>
+        </div>
 
       </div>
     </section>
