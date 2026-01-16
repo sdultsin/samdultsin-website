@@ -193,6 +193,170 @@ body {
     line-height: 1.7;
 }
 
+/* Experience Section */
+.experience-section {
+    padding: 6rem 2rem;
+    background: #F5F1E8;
+}
+
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    background: #9a8a7a;
+    z-index: 1;
+    height: 100%;
+}
+
+.timeline-content {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.age-marker {
+    position: relative;
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    background: #F5F1E8;
+    color: #3d2f24;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-left: -29px;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    z-index: 3;
+}
+
+.age-marker:first-child {
+    margin-top: 0;
+}
+
+.age-marker-spacing {
+    height: 45px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-left: 70px;
+}
+
+.timeline-item-spaced {
+    margin-top: 70px;
+}
+
+.company-circle {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    border-radius: 50%;
+    background: #faf8f3;
+    border: 2px solid #d4c4b0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.company-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.company-content {
+    flex: 1;
+    padding-top: 0.5rem;
+    margin-left: 0;
+}
+
+.company-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3d2f24;
+    margin-bottom: 0.5rem;
+}
+
+
+.company-description {
+    font-size: 1rem;
+    color: #6b5d52;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 4rem 1.5rem;
+    }
+    
+    .timeline-content {
+        padding-bottom: 15px;
+    }
+    
+    .age-marker-spacing {
+        height: 35px;
+    }
+    
+    .timeline-item {
+        padding-left: 60px;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .age-marker {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        margin-left: -24px;
+        font-size: 2rem;
+    }
+    
+    .company-circle {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+    
+    .company-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .timeline-item-spaced {
+        margin-top: 50px;
+    }
+    
+    .company-name {
+        font-size: 1.5rem;
+    }
+    
+    .company-description {
+        font-size: 0.95rem;
+    }
+}
+
 /* Services Overview Section */
 .services-overview {
     padding: 6rem 2rem;
@@ -402,6 +566,18 @@ body {
     font-weight: 500;
 }
 
+.workflow-note {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #6b5d52;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    font-style: italic;
+}
+
 .workflow-steps {
     max-width: 800px;
     margin: 0 auto;
@@ -524,43 +700,46 @@ body {
     margin-bottom: 0;
 }
 
-/* Wrapper for graph + citation */
+.college-bullet-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #3d2f24;
+}
+
+.college-bullet-list li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.college-bullet-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Wrapper for graph */
 .college-graph-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 7rem;
 }
 
-/* Graph box with tan background */
-.college-graph {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f6f2ea;
-    padding: 1.5rem 1.5rem;
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.12);
-    margin-top: 2rem;
-}
-
-/* Source citation - outside the box */
-.graph-sources {
-    font-size: 0.85rem;
-    color: #6b5d52;
-    margin-top: 0.5rem;  /* Space between box and citation */
-    text-align: left; 
-    padding-left: 1.5rem;
-}
-
-.college-graph img {
+.college-graph-image {
     width: 100%;
     max-width: 600px;
     height: auto;
-    box-shadow: none;
     display: block;
     margin: 0;
+    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.15);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.college-graph-image:hover {
+    transform: scale(1.08);
 }
 
 .college-closing {
