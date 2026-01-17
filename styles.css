@@ -6,25 +6,95 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important; /* Hide default cursor everywhere */
+}
+
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #3d2f24; /* Dark brown color */
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    mix-blend-mode: difference; /* Creates cool effect with backgrounds */
+    opacity: 1;
+}
+
+/* Optional: Cursor dot (smaller inner circle) */
+.custom-cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: #3d2f24;
+    border-radius: 50%;
+}
+
+/* Hover states - cursor grows slightly */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+.custom-cursor.hover {
+    width: 24px;
+    height: 24px;
+}
+
+/* Click state - cursor shrinks */
+.custom-cursor.click {
+    width: 12px;
+    height: 12px;
+}
+
+/* Dark mode cursor */
+body.dark-mode .custom-cursor {
+    background: #e8e8e8; /* Light color for dark mode */
+}
+
+body.dark-mode .custom-cursor::before {
+    background: #e8e8e8;
 }
 
 html {
     overflow-x: hidden;
     max-width: 100vw;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: linear-gradient(180deg, #faf8f3 0%, #ffffff 100%);
     color: #3d2f24;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden; /* Make sure this is here */
     max-width: 100vw; /* Make sure this is here */
+    cursor: none; /* Hide default cursor for custom cursor */
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 /* ===================================
    NAVIGATION
    =================================== */
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #3d2f24, #817165);
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
 
 /* Main Site Navigation */
 .main-nav {
@@ -34,18 +104,33 @@ body {
     padding: 1.5rem 4rem 1.5rem 2rem;
     background: #faf8f3;
     border-bottom: 1px solid #e8dfd5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.main-nav.scrolled {
+    background: rgba(250, 248, 243, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(61, 47, 36, 0.08);
+    border-bottom: 1px solid rgba(232, 223, 213, 0.6);
 }
 
 .logo {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.125rem;
+    font-weight: 600;
     color: #3d2f24;
     text-decoration: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.01em;
 }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
+    align-items: center;
 }
 
 .nav-links a {
@@ -53,11 +138,44 @@ body {
     color: #6b5d52;
     font-weight: 500;
     transition: color 0.2s;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: #3d2f24;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    color: #6b5d52;
+    transition: color 0.3s ease, transform 0.2s ease, background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.theme-toggle:hover {
+    color: #3d2f24;
+    background: rgba(61, 47, 36, 0.1);
+    transform: scale(1.1);
+}
+
+.lightbulb-icon {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .lightbulb-icon {
+    transform: rotate(15deg);
 }
 
 /* Landing Page Navigation (Minimal) */
@@ -95,6 +213,8 @@ body {
     min-height: 100vh;  /* Changed - full viewport height */
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden; /* Prevent content from overflowing during zoom */
 }
 
 .hero-content {
@@ -105,6 +225,9 @@ body {
     max-width: 1600px;
     margin: 0 auto;
     align-items: center;
+    transform-origin: center center; /* Zoom from center */
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+    will-change: transform, opacity; /* Performance hint */
 }
 
 .hero-text h1 {
@@ -118,7 +241,7 @@ body {
 }
 
 .hero-main {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
     display: inline-block;
     white-space: nowrap;  /* Prevents wrapping within this span */
@@ -128,16 +251,26 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease 0.3s forwards;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .hero-sub {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 600;
     display: block;
     background: linear-gradient(90deg, #3d2f24 0%, #817165 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease 0.6s forwards;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
 }
 
 .hero-text {
@@ -145,18 +278,23 @@ body {
 }
 
 .hero-text p {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: #6b5d52;
-    line-height: 1.7;
+    line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 600px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.9s forwards;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .hero-image {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    will-change: transform;
 }
 
 .hero-image img {
@@ -166,6 +304,30 @@ body {
     border-radius: 12px;
     border: 3px solid #3d2f24;  /* Dark brown border */
     box-shadow: 0 12px 40px rgba(61, 47, 36, 0.25);  /* Stronger shadow */
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeInScale 1s ease 1.2s forwards;
+    transition: transform 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to { 
+        opacity: 1; 
+    }
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 
@@ -193,10 +355,28 @@ body {
     line-height: 1.7;
 }
 
+/* Scroll-triggered Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section {
+    position: relative;
+    overflow: hidden;
+}
+
 /* Experience Section */
 .experience-section {
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     background: #F5F1E8;
+    transition: background 0.5s ease;
 }
 
 .timeline-container {
@@ -211,7 +391,7 @@ body {
     top: 0;
     width: 2px;
     background: #9a8a7a;
-    z-index: 1;
+    z-index: 0;
     height: 100%;
 }
 
@@ -235,6 +415,12 @@ body {
     margin-top: 2rem;
     margin-bottom: 0;
     z-index: 3;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.age-marker:hover {
+    transform: scale(1.1);
+    color: #2a1f17;
 }
 
 .age-marker:first-child {
@@ -252,6 +438,18 @@ body {
     margin-bottom: 2.5rem;
     position: relative;
     padding-left: 70px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    cursor: pointer;
+}
+
+.timeline-item:hover {
+    transform: translateX(12px);
+}
+
+.timeline-item:hover .company-circle {
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 8px 28px rgba(61, 47, 36, 0.25);
+    border-color: #3d2f24;
 }
 
 .timeline-item-spaced {
@@ -275,6 +473,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .company-circle img {
@@ -287,21 +486,29 @@ body {
     flex: 1;
     padding-top: 0.5rem;
     margin-left: 0;
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover .company-content {
+    color: #2a1f17;
 }
 
 .company-name {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 600;
     color: #3d2f24;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
 }
 
 
 .company-description {
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: #6b5d52;
     line-height: 1.6;
     margin: 0;
+    font-weight: 400;
 }
 
 /* Mobile responsive */
@@ -529,16 +736,39 @@ body {
 
 /* How I Work Section */
 .how-i-work {
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     background: #faf8f3 !important;  /* Add !important to override */
     margin: 0 auto;
+    position: relative;
 }
 
 .how-i-work h2 {
-    font-size: 2.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.how-i-work h2.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.how-i-work h2 {
+    font-size: 3rem;
     color: #3d2f24;
     margin-bottom: 2rem;
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.how-i-work h2.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .workflow-intro-box {
@@ -547,28 +777,45 @@ body {
     padding: 2rem;
     border-radius: 12px;
     margin: 0 auto 3rem;
-    max-width: 900px;
+    max-width: 1050px;
     line-height: 1.7;
-    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.15);  /* ADD this line */
+    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.workflow-intro-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(61, 47, 36, 0.2);
 }
 
 .workflow-intro-box p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 .workflow-lead {
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     color: #3d2f24;
     margin-bottom: 3rem;
     font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.workflow-lead.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .workflow-note {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #6b5d52;
     margin-top: 3rem;
     max-width: 800px;
@@ -576,6 +823,15 @@ body {
     margin-right: auto;
     line-height: 1.6;
     font-style: italic;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.workflow-note.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .workflow-steps {
@@ -590,6 +846,23 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     position: relative;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.workflow-step.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.workflow-step:hover {
+    transform: translateX(8px);
+}
+
+.workflow-step:hover .step-number {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(61, 47, 36, 0.2);
 }
 
 .workflow-step:last-child {
@@ -623,6 +896,11 @@ body {
     flex-shrink: 0;
     position: relative;
     z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.workflow-step:hover .step-number {
+    background: #6b5646;
 }
 
 .step-content {
@@ -631,10 +909,12 @@ body {
 }
 
 .step-content p {
-    font-size: 1.15rem;
+    font-size: 1.125rem;
     color: #3d2f24;
     line-height: 1.6;
     margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 /* Mobile responsive */
@@ -658,8 +938,31 @@ body {
 
 /* College Section */
 .college-section {
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     background: white;
+    position: relative;
+}
+
+.college-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(250, 248, 243, 0.4), transparent);
+    pointer-events: none;
+}
+
+.college-section h2 {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.college-section h2.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .college-content {
@@ -675,10 +978,24 @@ body {
     margin-bottom: 3rem;
 }
 
+.college-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.college-text.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .college-text h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #3d2f24;
     margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .college-subtitle {
@@ -690,10 +1007,11 @@ body {
 }
 
 .college-text p {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     color: #3d2f24;
     line-height: 1.7;
     margin-bottom: 1.5rem;
+    font-weight: 400;
 }
 
 .college-text p:last-child {
@@ -708,9 +1026,10 @@ body {
 }
 
 .college-bullet-list li {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     line-height: 1.7;
     margin-bottom: 0.5rem;
+    font-weight: 400;
 }
 
 .college-bullet-list li:last-child {
@@ -734,12 +1053,26 @@ body {
     margin: 0;
     box-shadow: 0 8px 24px rgba(61, 47, 36, 0.15);
     border-radius: 8px;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
     transform-origin: center;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.college-graph-image.animate-in {
+    animation: scaleInGraph 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .college-graph-image:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(61, 47, 36, 0.25);
+}
+
+@keyframes scaleInGraph {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .college-closing {
@@ -1099,15 +1432,40 @@ body {
     color: #faf8f3;
     text-decoration: none;
     border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cta:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .cta:hover {
     background: #2a1f17;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(61, 47, 36, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.3);
+}
+
+.cta:active {
+    transform: translateY(-1px);
 }
 
 .cta-section {
@@ -1166,6 +1524,11 @@ body {
     margin: 0 auto;
 }
 
+.final-cta {
+    padding: 8rem 4rem;
+    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+}
+
 .cta-text {
     text-align: left;
     display: flex;
@@ -1176,28 +1539,37 @@ body {
 }
 
 .cta-text h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
     color: #3d2f24;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.cta-text.animate-in h2,
+.cta-text h2.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .cta-text p {
     font-size: 1.25rem;
     color: #6b5d52;
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: 2rem;
+    font-weight: 400;
 }
 
-.cta-calendly {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.1);
-}
+/* .cta-calendly - Minimal container, no styling needed to let Calendly widget stand on its own */
 
 /* Calendly widget */
 .calendly-inline-widget {
-    width: 100%;
+    width: 100% !important;
+    min-width: 100% !important;
     min-height: 630px;
     height: 650px;
     border: none;
@@ -1298,9 +1670,6 @@ body {
         font-size: 1.1rem;
     }
     
-    .cta-calendly {
-        padding: 1rem;
-    }
     
     .calendly-inline-widget {
         min-height: 500px !important;
@@ -2432,4 +2801,160 @@ body {
         flex: 1;
         max-width: 100%;
     }
+}
+
+/* ===================================
+   DARK MODE / NIGHT SHIFT
+   =================================== */
+
+body.dark-mode {
+    background: #0a0a0a;
+    color: #e8e8e8;
+}
+
+body.dark-mode .scroll-progress {
+    background: linear-gradient(90deg, #e8e8e8, #b8b8b8);
+}
+
+body.dark-mode .main-nav {
+    background: rgba(10, 10, 10, 0.9);
+    border-bottom: 1px solid rgba(232, 223, 213, 0.1);
+}
+
+body.dark-mode .main-nav.scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    border-bottom: 1px solid rgba(232, 223, 213, 0.15);
+}
+
+body.dark-mode .logo {
+    color: #e8e8e8;
+}
+
+body.dark-mode .nav-links a {
+    color: #b8b8b8;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active {
+    color: #e8e8e8;
+}
+
+body.dark-mode .theme-toggle {
+    color: #b8b8b8;
+}
+
+body.dark-mode .theme-toggle:hover {
+    color: #e8e8e8;
+    background: rgba(232, 232, 232, 0.1);
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+body.dark-mode .hero-main,
+body.dark-mode .hero-sub {
+    background: linear-gradient(90deg, #e8e8e8 0%, #b8b8b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark-mode .hero-text p {
+    color: #b8b8b8;
+}
+
+body.dark-mode .experience-section {
+    background: #121212;
+}
+
+body.dark-mode .age-marker {
+    background: #121212;
+    color: #e8e8e8;
+}
+
+body.dark-mode .timeline-line {
+    background: #2a2a2a;
+}
+
+body.dark-mode .company-circle {
+    background: #1a1a1a;
+    border-color: #2a2a2a;
+}
+
+body.dark-mode .company-name {
+    color: #e8e8e8;
+}
+
+body.dark-mode .company-description {
+    color: #b8b8b8;
+}
+
+body.dark-mode .how-i-work {
+    background: #0a0a0a !important;
+}
+
+body.dark-mode .how-i-work h2,
+body.dark-mode .workflow-lead,
+body.dark-mode .step-content p {
+    color: #e8e8e8;
+}
+
+body.dark-mode .workflow-intro-box {
+    background: #1a1a1a;
+    color: #e8e8e8;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .workflow-note {
+    color: #b8b8b8;
+}
+
+body.dark-mode .step-number {
+    background: #2a2a2a;
+    color: #e8e8e8;
+}
+
+body.dark-mode .step-connector {
+    background: #2a2a2a;
+}
+
+body.dark-mode .college-section {
+    background: #121212;
+}
+
+body.dark-mode .college-section::before {
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4), transparent);
+}
+
+body.dark-mode .college-text h2,
+body.dark-mode .college-text p,
+body.dark-mode .college-bullet-list {
+    color: #e8e8e8;
+}
+
+body.dark-mode .college-bullet-list li {
+    color: #b8b8b8;
+}
+
+body.dark-mode .final-cta {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+body.dark-mode .cta-text h2,
+body.dark-mode .cta-text p {
+    color: #e8e8e8;
+}
+
+body.dark-mode .cta {
+    background: #e8e8e8;
+    color: #0a0a0a;
+}
+
+body.dark-mode .cta:hover {
+    background: #d0d0d0;
+}
+
+body.dark-mode .cta::before {
+    background: rgba(0, 0, 0, 0.15);
 }

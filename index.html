@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sam Dultsin | AI SaaS Consulting</title>
+    <title>Sam Dultsin</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Load Calendly early -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    
     <!-- Navigation -->
     <nav class="main-nav">
         <a href="index.html" class="logo">Sam Dultsin</a>
@@ -18,6 +24,11 @@
             <a href="index.html" class="active">Home</a>
             <a href="resources.html">Resources</a>
             <a href="contact.html">Contact</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="lightbulb-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41M6.34 6.34L4.93 4.93M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -30,7 +41,7 @@
                 <span class="hero-sub">by fixing the workflows that stall <em>real growth</em>.</span>
             </h1>
             <p>I find where manual work is slowing you down, whether that's in your product or growth engine, and I help you automate it.</p>
-            <a href="contact.html" class="cta">Book a Call</a>
+            <a href="#lets-talk" class="cta">Let's Talk</a>
         </div>
         <div class="hero-image">
             <img src="images/sam-dultsin_website_profile.webp" alt="Sam Dultsin">
@@ -58,7 +69,7 @@
                 </div>
                 <div class="company-content">
                     <h3 class="company-name">Besti – Partnerships & Growth</h3>
-                    <p class="company-description">Led restaurant partnerships in NYC. Went door-to-door to 100+ venues and managed social content with partners.</p>
+                    <p class="company-description">At 16, joined Besti, a restaurant discovery app in NYC. Went door-to-door to 100+ venues to get the first restaurant partnerships and created content on IG & TikTok to get more people using the app.</p>
                 </div>
             </div>
             
@@ -68,7 +79,7 @@
                 </div>
                 <div class="company-content">
                     <h3 class="company-name">Digital Medium – Founder</h3>
-                    <p class="company-description">Started an SMMA at 16 doing Google/FB ads for home renovation companies. Shut it down after 2 months to focus on B2B work.</p>
+                    <p class="company-description">Started an SMMA, running Google & FB ads for home renovation companies. Shut it down after two months.</p>
                 </div>
             </div>
             
@@ -82,7 +93,17 @@
                 </div>
                 <div class="company-content">
                     <h3 class="company-name">Syracuse University</h3>
-                    <p class="company-description">Dropped out after freshman year when consulting work took off.</p>
+                    <p class="company-description">Went to college more out of indecision than genuine interest in any field. Left after third semester to pursue better opportunities.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item timeline-item-spaced">
+                <div class="company-circle">
+                    <img src="images/timeline_logos/Puremaven.jpeg" alt="Puremaven logo">
+                </div>
+                <div class="company-content">
+                    <h3 class="company-name">Puremaven – Marketing and Growth</h3>
+                    <p class="company-description">Joined Puremaven, a health and wellness company, working on the B2B side. Built out their social media presence on IG and LinkedIn while driving web traffic through content and SEO</p>
                 </div>
             </div>
             
@@ -92,11 +113,11 @@
             
             <div class="timeline-item">
                 <div class="company-circle">
-                    <img src="images/timeline_logos/Puremaven.jpeg" alt="Puremaven logo">
+                    <img src="images/timeline_logos/SD.png" alt="Sam Dultsin AI Consulting logo">
                 </div>
                 <div class="company-content">
-                    <h3 class="company-name">Puremaven – Marketing and Growth Associate</h3>
-                    <p class="company-description">Ran enterprise partnerships with Amazon, L'Oréal, and other Fortune 500 brands. Built content systems that drove 50% follower growth.</p>
+                    <h3 class="company-name">Sam Dultsin AI Consulting – Founder/Consultant</h3>
+                    <p class="company-description">LLM evaluation and GTM consulting for AI startups. Improving model accuracy and outbound campaigns. Currently put on pause.</p>
                 </div>
             </div>
             
@@ -104,23 +125,13 @@
             <div class="age-marker">19</div>
             <div class="age-marker-spacing"></div>
             
-            <div class="timeline-item">
-                <div class="company-circle">
-                    <img src="images/timeline_logos/SD.png" alt="Sam Dultsin AI Consulting logo">
-                </div>
-                <div class="company-content">
-                    <h3 class="company-name">Sam Dultsin AI Consulting – Founder/Consultant</h3>
-                    <p class="company-description">LLM evaluation and GTM consulting for AI startups. Improved model metrics and worked with product teams on go-to-market strategy.</p>
-                </div>
-            </div>
-            
             <div class="timeline-item timeline-item-spaced">
                 <div class="company-circle">
                     <img src="images/timeline_logos/ReplyAssist.png" alt="ReplyAssist logo">
                 </div>
                 <div class="company-content">
                     <h3 class="company-name">ReplyAssist – Growth</h3>
-                    <p class="company-description">Building the outbound infrastructure from scratch. Scaled from 10 to 100+ monthly demos and managing 300K+ emails/month.</p>
+                    <p class="company-description">Booking demos, closing, and scaling cold emails from 0 to 300k emails/month.</p>
                 </div>
             </div>
         </div>
@@ -172,7 +183,7 @@
         </div>
     </div>
     
-    <p class="workflow-note">From my experience, top-down learning process has been 10x more efficient than the typical "start with the basics" format that college seems to teach.</p>
+    <p class="workflow-note">From my experience, this top-down learning process has been 10x more efficient than the typical "start with the basics" format that college seems to teach.</p>
 </section>
 
 <!-- College Section -->
@@ -184,9 +195,9 @@
                 <p>I left college for a simple reason: it’s an inefficient way to learn.</p>
                 <p><strong>Theory ≠ learning</strong></p>
                 <ul class="college-bullet-list">
-                    <li>You don't learn how to ride a bike by reading about sensorimotor mechanics</li>
-                    <li>You don't learn sales from watching the Wolf of Wall Street</li>
+                    <li>You don't learn how to ride a bike by studying sensorimotor mechanics</li>
                     <li>You don't learn multi-billion dollar M&As from a FIN 435 class</li>
+                    <li>You don't learn PMF from a case study about Airbnb</li>
                 </ul>
                 
                 <p>There are startups everywhere looking for talent. Real companies with real problems. College just didn't make sense when I could be doing the actual work instead of preparing for it.</p>
@@ -200,12 +211,12 @@
 </section>
 
 <!-- CTA Section -->
-<section class="final-cta">
+<section id="lets-talk" class="final-cta">
     <div class="cta-content">
         <div class="cta-text">
             <h2>Let's Talk</h2>
-            <p>If you're dealing with an AI product that's inconsistent or an outreach process that's burning time, book a 30-minute call.</p>
-            <p>We'll talk about what's not working, and I'll tell you if I can help. If I can't, I'll point you toward someone who can.</p>
+            <p>I'm always interested in hearing about what people are building.</p>
+            <p>If you want to chat about your product, growth challenges, or just what you're working on, grab some time on my calendar.</p>
             
             <!-- ADD SOCIAL LINKS HERE -->
             <div class="social-links">
@@ -232,3 +243,7 @@
         </div>
     </div>
 </section>
+
+<script src="script.js"></script>
+</body>
+</html>
