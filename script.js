@@ -282,4 +282,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initCustomCursor();
     
+    // 11. Video error handling
+    const wolfVideo = document.getElementById('wolf-video');
+    if (wolfVideo) {
+        wolfVideo.addEventListener('error', function(e) {
+            console.error('Video error:', e);
+            const errorDiv = document.getElementById('video-error');
+            if (errorDiv) {
+                errorDiv.style.display = 'block';
+            }
+        });
+        
+        // Check if video can play
+        wolfVideo.addEventListener('loadedmetadata', function() {
+            console.log('Video metadata loaded');
+        });
+        
+        wolfVideo.addEventListener('canplay', function() {
+            console.log('Video can play');
+        });
+    }
+    
 });
