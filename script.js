@@ -34,17 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + '%';
     });
     
-    // 2. Sticky Nav with Blur Effect
+    // 2. Sticky Nav
     const nav = document.querySelector('.main-nav');
-    if (nav) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    }
     
     // 3. Intersection Observer for Scroll Animations
     const observerOptions = {
@@ -68,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Observe section headings separately for better control
     const sectionHeadings = document.querySelectorAll(
-        '.how-i-work h2, .college-section h2, .cta-text h2'
+        '.how-i-work h2, .college-section h2, .video-section h2, .cta-text h2'
     );
     
     animatedElements.forEach((el, index) => {
@@ -157,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initScrollZoom();
     
-    // 5. Smooth scroll for anchor links
+    // 6. Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -173,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // 6. Add scroll fade effect to sections
+    // 7. Add scroll fade effect to sections
     const sections = document.querySelectorAll('section');
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -187,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionObserver.observe(section);
     });
     
-    // 7. Enhanced CTA button interaction
+    // 8. Enhanced CTA button interaction
     const ctaButtons = document.querySelectorAll('.cta');
     ctaButtons.forEach(button => {
         button.addEventListener('mouseenter', function() {
@@ -198,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // 8. Dark Mode / Night Shift Toggle
+    // 9. Dark Mode / Night Shift Toggle
     function initThemeToggle() {
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
@@ -225,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initThemeToggle();
     
-    // 9. Custom Cursor Implementation
+    // 10. Custom Cursor Implementation
     function initCustomCursor() {
         const cursor = document.getElementById('custom-cursor');
         if (!cursor) return;
