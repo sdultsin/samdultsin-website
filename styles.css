@@ -25,6 +25,11 @@
     opacity: 1;
 }
 
+/* Hide custom cursor on contact page */
+body.contact-page .custom-cursor {
+    display: none;
+}
+
 /* Optional: Cursor dot (smaller inner circle) */
 .custom-cursor::before {
     content: '';
@@ -79,6 +84,12 @@ body {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Show default cursor on contact page */
+body.contact-page,
+body.contact-page * {
+    cursor: auto !important;
 }
 
 /* ===================================
@@ -852,15 +863,6 @@ section {
     transform: translateX(0);
 }
 
-.workflow-step:hover {
-    transform: translateX(8px);
-}
-
-.workflow-step:hover .step-number {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(61, 47, 36, 0.2);
-}
-
 .workflow-step:last-child {
     margin-bottom: 0;
 }
@@ -897,11 +899,18 @@ section {
 
 .workflow-step:hover .step-number {
     background: #6b5646;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(61, 47, 36, 0.2);
 }
 
 .step-content {
     flex: 1;
     padding-top: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.workflow-step:hover .step-content {
+    transform: scale(1.05);
 }
 
 .step-content p {
@@ -1049,18 +1058,20 @@ section {
     margin: 0;
     box-shadow: 0 8px 24px rgba(61, 47, 36, 0.15);
     border-radius: 8px;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
     opacity: 0;
     transform: scale(0.95);
+    position: relative;
 }
 
 .college-graph-image.animate-in {
     animation: scaleInGraph 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.college-graph-image:hover {
-    transform: scale(1.05);
+.college-graph-image:hover,
+.college-graph-image.animate-in:hover {
+    transform: scale(1.25) !important;
     box-shadow: 0 12px 32px rgba(61, 47, 36, 0.25);
 }
 
@@ -1427,7 +1438,7 @@ section {
     padding: 0 4rem;
     display: flex;
     gap: 4rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .contact-left {
@@ -1456,6 +1467,9 @@ section {
     border-radius: 12px;
     border: 1px solid #e8dfd5;
     box-shadow: 0 2px 8px rgba(61, 47, 36, 0.06);
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
 }
 
 .contact-right {
@@ -1463,8 +1477,8 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 12.5rem;
     margin-left: 10rem;
+    margin-top: 6.5rem;
 }
 
 .contact-right > img {  /* Only direct child img (the profile photo) */
@@ -1674,9 +1688,10 @@ section {
 #my-cal-inline-30min-contact {
     width: 100% !important;
     min-width: 100% !important;
-    min-height: 630px;
-    height: 650px;
+    min-height: 650px;
+    height: auto;
     border: none;
+    overflow: visible !important;
 }
 
 /* Responsive */
