@@ -216,73 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initThemeToggle();
     
-    // 10. Custom Cursor Implementation
-    function initCustomCursor() {
-        const cursor = document.getElementById('custom-cursor');
-        if (!cursor) return;
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-        
-        // Track mouse position
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        // Smooth cursor follow animation
-        function animateCursor() {
-            // Easing for smooth following
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            cursorX += dx * 0.1; // Adjust 0.1 for speed (lower = slower/smoother)
-            cursorY += dy * 0.1;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        
-        animateCursor();
-        
-        // Add hover effects on interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .cta, .theme-toggle, .nav-links a, input, textarea, select');
-        
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-        
-        // Click animation
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('click');
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('click');
-        });
-        
-        // Hide cursor when mouse leaves window
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-        });
-    }
-    
-    initCustomCursor();
-    
-    // 11. Video error handling
+    // 10. Video error handling
     const wolfVideo = document.getElementById('wolf-video');
     if (wolfVideo) {
         wolfVideo.addEventListener('error', function(e) {

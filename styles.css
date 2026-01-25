@@ -6,64 +6,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important; /* Hide default cursor everywhere */
-}
-
-
-/* Custom Cursor */
-.custom-cursor {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #3d2f24; /* Dark brown color */
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    mix-blend-mode: difference; /* Creates cool effect with backgrounds */
-    opacity: 1;
-}
-
-/* Hide custom cursor on contact page */
-body.contact-page .custom-cursor {
-    display: none;
-}
-
-/* Optional: Cursor dot (smaller inner circle) */
-.custom-cursor::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 4px;
-    height: 4px;
-    background: #3d2f24;
-    border-radius: 50%;
-}
-
-/* Hover states - cursor grows slightly */
-a:hover ~ .custom-cursor,
-button:hover ~ .custom-cursor,
-.custom-cursor.hover {
-    width: 24px;
-    height: 24px;
-}
-
-/* Click state - cursor shrinks */
-.custom-cursor.click {
-    width: 12px;
-    height: 12px;
-}
-
-/* Dark mode cursor */
-body.dark-mode .custom-cursor {
-    background: #e8e8e8; /* Light color for dark mode */
-}
-
-body.dark-mode .custom-cursor::before {
-    background: #e8e8e8;
 }
 
 html {
@@ -80,16 +22,9 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     max-width: 100vw;
-    cursor: none;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-/* Show default cursor on contact page */
-body.contact-page,
-body.contact-page * {
-    cursor: auto !important;
 }
 
 /* ===================================
