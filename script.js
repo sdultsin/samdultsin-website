@@ -1,6 +1,3 @@
-// Console log to verify JavaScript is loaded
-console.log("Website loaded successfully!");
-
 // Toggle accordion service cards
 function toggleService(element) {
     const serviceCard = element.parentElement;
@@ -34,8 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + '%';
     });
     
-    // 2. Sticky Nav
+    // 2. Sticky Nav – add scrolled class when user scrolls
     const nav = document.querySelector('.main-nav');
+    if (nav) {
+        const scrollThreshold = 50;
+        function updateNavScrolled() {
+            if (window.scrollY > scrollThreshold) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', () => {
+            if (!window.requestAnimationFrame) {
+                updateNavScrolled();
+            } else {
+                requestAnimationFrame(updateNavScrolled);
+            }
+        });
+        updateNavScrolled();
+    }
     
     // 3. Intersection Observer for Scroll Animations
     const observerOptions = {
@@ -59,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Observe section headings separately for better control
     const sectionHeadings = document.querySelectorAll(
-        '.how-i-work h2, .college-section h2, .video-section h2, .cta-text h2'
+        '.how-i-work h2, .college-section h2, .cta-text h2'
     );
     
     animatedElements.forEach((el, index) => {
@@ -202,10 +217,18 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.add('dark-mode');
         }
         
+        function updateThemeLabel() {
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-label', body.classList.contains('dark-mode') ? 'Switch to light mode' : 'Toggle dark mode');
+            }
+        }
+        updateThemeLabel();
+        
         // Toggle theme on button click
         if (themeToggle) {
             themeToggle.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
+                updateThemeLabel();
                 
                 // Save preference
                 const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
@@ -215,26 +238,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     initThemeToggle();
-    
-    // 10. Video error handling
-    const wolfVideo = document.getElementById('wolf-video');
-    if (wolfVideo) {
-        wolfVideo.addEventListener('error', function(e) {
-            console.error('Video error:', e);
-            const errorDiv = document.getElementById('video-error');
-            if (errorDiv) {
-                errorDiv.style.display = 'block';
-            }
-        });
-        
-        // Check if video can play
-        wolfVideo.addEventListener('loadedmetadata', function() {
-            console.log('Video metadata loaded');
-        });
-        
-        wolfVideo.addEventListener('canplay', function() {
-            console.log('Video can play');
-        });
-    }
     
 });
