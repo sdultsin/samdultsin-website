@@ -238,5 +238,180 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     initThemeToggle();
-    
+
+    // ============================================
+    // ENHANCED UI/UX EFFECTS
+    // ============================================
+
+    // 10. Parallax Effect for Hero Image
+    function initParallax() {
+        const heroImage = document.querySelector('.hero-image img');
+        if (!heroImage) return;
+
+        let parallaxTicking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero');
+            if (!heroSection) return;
+
+            const heroHeight = heroSection.offsetHeight;
+
+            if (scrolled < heroHeight) {
+                const parallaxOffset = scrolled * 0.15;
+                const rotateX = scrolled * 0.02;
+                heroImage.style.transform = `translateY(${parallaxOffset}px) rotateX(${rotateX}deg)`;
+            }
+
+            parallaxTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!parallaxTicking) {
+                requestAnimationFrame(updateParallax);
+                parallaxTicking = true;
+            }
+        });
+    }
+
+    initParallax();
+
+    // 11. Animated Number Counters
+    function initCounters() {
+        const counters = document.querySelectorAll('.counter');
+        if (counters.length === 0) return;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 6000; // 6 seconds
+                    const startTime = performance.now();
+
+                    function updateCounter(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        // Easing function for smooth animation
+                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                        const currentValue = Math.floor(easeOutQuart * target);
+
+                        counter.textContent = currentValue;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    }
+
+                    requestAnimationFrame(updateCounter);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
+
+    initCounters();
+
+    // 12. Timeline Line Fill Animation
+    function initTimelineFill() {
+        const timelineContainer = document.querySelector('.timeline-container');
+        const timelineFill = document.querySelector('.timeline-line-fill');
+        if (!timelineContainer || !timelineFill) return;
+
+        let timelineTicking = false;
+
+        function updateTimelineFill() {
+            const containerRect = timelineContainer.getBoundingClientRect();
+            const containerTop = containerRect.top;
+            const containerHeight = containerRect.height;
+            const windowHeight = window.innerHeight;
+
+            // Calculate how much of the timeline is visible/passed
+            const scrollProgress = (windowHeight - containerTop) / (containerHeight + windowHeight);
+            const clampedProgress = Math.min(Math.max(scrollProgress, 0), 1);
+
+            timelineFill.style.height = `${clampedProgress * 100}%`;
+
+            timelineTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!timelineTicking) {
+                requestAnimationFrame(updateTimelineFill);
+                timelineTicking = true;
+            }
+        });
+
+        // Initial call
+        updateTimelineFill();
+    }
+
+    initTimelineFill();
+
+    // 13. Card Tilt Effect on Timeline Items
+    function initTiltEffect() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        timelineItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.classList.add('tilt-effect');
+                // Remove animate-on-scroll transform to allow tilt
+                this.style.transition = 'transform 0.15s ease-out';
+            });
+
+            item.addEventListener('mousemove', function(e) {
+                if (!this.classList.contains('animate-in') && this.classList.contains('animate-on-scroll')) {
+                    return; // Don't apply tilt if not yet animated in
+                }
+
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(12px) translateY(0)`;
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.classList.remove('tilt-effect');
+                // Reset to animated-in state
+                this.style.transform = 'translateY(0)';
+                this.style.transition = '';
+            });
+        });
+    }
+
+    initTiltEffect();
+
+    // 14. Scroll-Triggered Text Highlight
+    function initTextHighlight() {
+        const highlightElements = document.querySelectorAll('.highlight-text');
+        if (highlightElements.length === 0) return;
+
+        const highlightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Small delay for dramatic effect
+                    setTimeout(() => {
+                        entry.target.classList.add('highlighted');
+                    }, 300);
+                    highlightObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.8 });
+
+        highlightElements.forEach(el => highlightObserver.observe(el));
+    }
+
+    initTextHighlight();
+
 });

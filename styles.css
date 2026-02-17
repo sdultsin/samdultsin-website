@@ -207,6 +207,13 @@ body {
     line-height: 1.2;
 }
 
+.hero-sub em {
+    font-style: normal;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
 .hero-text {
     padding-left: 3rem;
 }
@@ -216,7 +223,7 @@ body {
     color: #6b5d52;
     line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 750px;
     opacity: 0;
     animation: fadeIn 1s ease 0.2s forwards;
     font-weight: 400;
@@ -341,7 +348,7 @@ section {
     height: 58px;
     line-height: 58px;
     text-align: center;
-    background: #F5F1E8;
+    background: transparent;
     color: #3d2f24;
     font-weight: 900;
     font-size: 2.5rem;
@@ -350,6 +357,20 @@ section {
     margin-bottom: 0;
     z-index: 3;
     transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Cover the timeline line behind the age marker */
+.age-marker::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    transform: translateX(-50%);
+    background: inherit;
+    background: linear-gradient(180deg, #f5f0e8 0%, #F5F1E8 50%, #efe9dc 100%);
+    z-index: -1;
 }
 
 .age-marker:hover {
@@ -376,9 +397,7 @@ section {
     cursor: pointer;
 }
 
-.timeline-item:hover {
-    transform: translateX(12px);
-}
+/* Hover transform handled by JavaScript tilt effect */
 
 .timeline-item:hover .company-circle {
     transform: translateX(-50%) scale(1.08);
@@ -1457,6 +1476,13 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 24px rgba(61, 47, 36, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Hero CTA fade in animation */
+.hero-text .cta {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 1s ease 0.4s forwards;
 }
 
 .cta::before {
@@ -2926,8 +2952,12 @@ body.dark-mode .experience-section {
 }
 
 body.dark-mode .age-marker {
-    background: #121212;
+    background: transparent;
     color: #e8e8e8;
+}
+
+body.dark-mode .age-marker::before {
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #151515 100%);
 }
 
 body.dark-mode .timeline-line {
@@ -3035,4 +3065,165 @@ body.dark-mode .cta:hover {
 
 body.dark-mode .cta::before {
     background: rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================
+   ENHANCED UI/UX EFFECTS
+   =================================== */
+
+/* 1. Parallax Effect for Hero Image */
+.hero-image {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.hero-image img {
+    will-change: transform;
+    transform: translateZ(0);
+    transition: transform 0.1s ease-out;
+}
+
+/* 2. Animated Number Counters */
+.counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    min-width: 2ch;
+}
+
+/* 3. CTA Button Glow Effect */
+.cta {
+    box-shadow: 0 8px 24px rgba(61, 47, 36, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.cta:hover {
+    box-shadow: 0 8px 32px rgba(61, 47, 36, 0.35),
+                0 0 40px rgba(61, 47, 36, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.cta:hover::after {
+    opacity: 1;
+}
+
+body.dark-mode .cta:hover {
+    box-shadow: 0 8px 32px rgba(232, 232, 232, 0.2),
+                0 0 40px rgba(232, 232, 232, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 4. Timeline Line Fill Animation */
+.timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    background: rgba(154, 138, 122, 0.3);
+    z-index: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.timeline-line-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #3d2f24 0%, #6b5d52 50%, #9a8a7a 100%);
+    transition: height 0.1s ease-out;
+}
+
+body.dark-mode .timeline-line {
+    background: rgba(42, 42, 42, 0.5);
+}
+
+body.dark-mode .timeline-line-fill {
+    background: linear-gradient(180deg, #e8e8e8 0%, #b8b8b8 50%, #888888 100%);
+}
+
+/* 5. Gradient Background Transitions Between Sections */
+.hero {
+    background: linear-gradient(180deg, #faf8f3 0%, #f5f0e8 100%);
+}
+
+.experience-section {
+    background: linear-gradient(180deg, #f5f0e8 0%, #F5F1E8 50%, #efe9dc 100%);
+}
+
+.how-i-work {
+    background: linear-gradient(180deg, #faf8f3 0%, #f8f4eb 50%, #faf8f3 100%) !important;
+}
+
+.college-section {
+    background: linear-gradient(180deg, #faf8f3 0%, #f5f0e8 100%);
+}
+
+.final-cta {
+    background: linear-gradient(180deg, #f5f0e8 0%, #faf8f3 100%);
+}
+
+body.dark-mode .experience-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #151515 100%);
+}
+
+body.dark-mode .college-section {
+    background: linear-gradient(180deg, #151515 0%, #1a1a1a 100%);
+}
+
+/* 6. Card Tilt Effect on Timeline Items */
+.timeline-item {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+.timeline-item.tilt-effect {
+    transition: transform 0.15s ease-out;
+}
+
+/* 7. Scroll-Triggered Text Highlight (Underline style) */
+.highlight-text {
+    position: relative;
+    font-style: normal;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3d2f24, #6b5d52);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.highlight-text.highlighted::after {
+    transform: scaleX(1);
+}
+
+body.dark-mode .highlight-text::after {
+    background: linear-gradient(90deg, #e8e8e8, #b8b8b8);
+}
+
+/* Smooth section transitions on scroll */
+section {
+    transition: background 0.5s ease;
 }
